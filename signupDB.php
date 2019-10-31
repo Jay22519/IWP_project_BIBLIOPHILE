@@ -4,6 +4,7 @@
 	$password = "";
 	$dbname = "user_info";
 
+	$usernamedb = $_POST["username"];
 	$name = $_POST["name"];
 	$email = $_POST["email"];
 	$country = $_POST["country"];
@@ -18,8 +19,8 @@
 
 	
 
-	$sql = "INSERT INTO userdata (name, email, country_code, phone_no, passwd)
-	VALUES ('$name', '$email', '$country', '$phone', '$pwd')";
+	$sql = "INSERT INTO userdata (username,name, email, country_code, phone_no, passwd)
+	VALUES ('$usernamedb','$name', '$email', '$country', '$phone', '$pwd')";
 
 	if (mysqli_query($conn, $sql)) {
 	    echo "<h2>Hi! " . $name . "<br>" . " You have successfully signed up to Bibliophile.</h2>" ;
