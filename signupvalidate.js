@@ -1,11 +1,18 @@
 function validateform()
 {
+	var username = document.forms["signup"]["username"].value;
 	var name = document.forms["signup"]["name"].value;
 	var email = document.forms["signup"]["email"].value;
 	var country = document.forms["signup"]["country"].value;
 	var phone = document.forms["signup"]["phone"].value;
 	var pwd = document.forms["signup"]["pwd"].value;
 	var pwdr = document.forms["signup"]["pwdr"].value;
+	if (username == "")             //if username field is empty,display alert
+	{
+	    alert("Username must be filled out");
+	    username.focus();
+	    return false;
+  	}
 	if (name == "")             //if name field is empty,display alert
 	{
 	    alert("Name must be filled out");
