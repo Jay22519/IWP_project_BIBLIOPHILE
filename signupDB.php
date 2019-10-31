@@ -22,7 +22,7 @@
 	VALUES ('$name', '$email', '$country', '$phone', '$pwd')";
 
 	if (mysqli_query($conn, $sql)) {
-	    echo "<h2>Hi! " . $name . "<br>" . ". You have successfully signed up to Bibliophile.</h2>" ;
+	    echo "<h2>Hi! " . $name . "<br>" . " You have successfully signed up to Bibliophile.</h2>" ;
 	} else {
 	    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 	}
