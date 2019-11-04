@@ -5,36 +5,132 @@
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
-	<!--place the stylesheet file here-->
-
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	  <script src="signupvalidate.js"></script>
+
+	  <style type="text/css">
+	  	body	{
+					background-image: url(https://images.unsplash.com/photo-1457369804613-52c61a468e7d?ixlib=rb-1.2.1&w=1000&q=80);
+					background-size: 100%;
+					background-attachment: fixed;
+		}
+		#styles	{
+					background-color: white; 
+					padding: 50px; 
+					border-radius: 25px;
+					-webkit-box-shadow: 1px 2px 13px 7px rgba(0,0,0,0.81); 
+					box-shadow: 1px 2px 13px 7px rgba(0,0,0,0.81);
+		}
+		input[type=text] {
+  							width: 100%;
+  							padding: 20px 20px;
+  							margin: 8px 0;
+  							box-sizing: border-box;
+  							border: 1px solid rgb(230, 230, 230);
+  							-webkit-transition: 0.5s;
+  							transition: 0.5s;
+  							outline: none;
+		}
+		input[type=text]:focus {
+  								border: 2px solid rgb(255, 153, 128);
+		}
+		input[type=email] {
+  							width: 100%;
+  							padding: 20px 20px;
+  							margin: 8px 0;
+  							box-sizing: border-box;
+  							border: 1px solid rgb(230, 230, 230);
+  							-webkit-transition: 0.5s;
+  							transition: 0.5s;
+  							outline: none;
+		}
+		input[type=email]:focus {
+  								border: 2px solid rgb(255, 153, 128);
+		}
+		.label {
+				font-family: veradana;
+		}
+		#select_options	{
+  							padding: 5px 20px;
+  							margin: 8px 0;
+  							border: 2px solid rgb(230, 230, 230);
+		}
+		#select_options:focus {
+				border: 3px solid rgb(255, 153, 128);
+		}
+		input[type=password] {
+  							width: 100%;
+  							padding: 20px 20px;
+  							margin: 8px 0;
+  							box-sizing: border-box;
+  							border: 1px solid rgb(230, 230, 230);
+  							-webkit-transition: 0.5s;
+  							transition: 0.5s;
+  							outline: none;
+		}
+		input[type=password]:focus {
+  								border: 2px solid rgb(255, 153, 128);
+		}
+		.container {
+  					display: flex;
+  					justify-content: center;
+  					align-items: center;
+  					align-content: center;
+  					flex-wrap: wrap;
+  					width: 80vw;
+  					margin: 0 auto;
+  					min-height: 100vh;
+  		}
+		.btn {
+  				width: 100%;
+  				flex: 1 1 auto;
+  				margin: 10px;
+  				padding: 15px;
+  				text-align: center;
+  				text-transform: uppercase;
+  				transition: 0.5s;
+  				background-size: 200% auto;
+ 	 			color: white;
+ 				/* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  				box-shadow: 0 0 20px #eee;
+  				border-radius: 10px;
+ 		}
+ 		.btn:hover {
+  				background-position: right center; /* change the direction of the change here */
+		}
+		.btn-1 {
+  				background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
+		}
+		
+	  </style>
+
 	</head>
+	
 	<body>
-	<div class="container">
+
+	<div class="container" >
   	<div class="col-md-3"></div>         <!--page is divided into three parts in 1:2:1 ratio,middle part contains a bootstrap form-->
-  	<div class="col-md-6">
-	    <h2 style="text-align: center;">SIGNUP TO BIBLIOPHILE</h2>
-	    <form name="signup" action="signupDB.php" onsubmit="return validateform()" method="post">   <!--form is directed to signupDB.php-->
-		<div class="form-group">
-	        <label for="username">Username:</label>
-	        <input type="text" class="form-control" placeholder="Enter unique username" name="username">
-	     </div>	     
-		<div class="form-group">
-	        <label for="name">Name:</label>
-	        <input type="text" class="form-control" placeholder="Enter name" name="name">
+  	<div class="col-md-6" id="styles">
+	    <h2 style="text-align: center; padding-bottom: 10px; color: rgb(64, 64, 64);"><b>SIGN UP TO BIBLIOPHILE</b></h2>
+
+	    <form name="signup" action="signupDB.php" onsubmit="return validateform()" method="post" style=" padding: 20px">   <!--form is directed to signupDB.php-->
+
+	     <div class="form-group" >
+	        
+	        <input type="text" class="form-control" placeholder="Your Name" name="name">
 	     </div>	
-
+	     <div class="form-group">		     
+		 <input type="text" class="form-control" placeholder="Your Username" name="username">
+		    </div>
+		    
 	     <div class="form-group">
-	        <label for="email">Email:</label>
-	        <input type="email" class="form-control" placeholder="Enter email" name="email">
+	        <input type="email" class="form-control" placeholder="Your Email" name="email">
 	     </div>
-
+		    
 	     <div class="form-group">
-	        <label for="country">Country Code:</label>
-	        <select name="country">
+	        <label for="country">Country Code: &nbsp</label>
+	        <select name="country" id="select_options">
 	        	<option value="Afganistan">Afghanistan</option>
    			<option value="Albania">Albania</option>
    			<option value="Algeria">Algeria</option>
@@ -285,21 +381,19 @@
 	     </div>
 
 	     <div class="form-group">
-	        <label for="phone">Phone no.:</label>
-	        <input type="text" class="form-control" placeholder="Enter phone no." name="phone">
+	        <input type="text" class="form-control" placeholder="Your Phone no." name="phone">
 	     </div>
-
 	     <div class="form-group">
-	        <label for="pwd">Set Password:</label>
-	        <input type="password" class="form-control" name="pwd">
+	        <input type="password" class="form-control" name="pwd" placeholder="Type Password">
      	</div>
-
      	<div class="form-group">
-	        <label for="pwdr">Retype Password:</label>
-	        <input type="password" class="form-control" name="pwdr">
+	        <input type="password" class="form-control" name="pwdr" placeholder="Retype Password">
      	</div>
-      
-      	<button type="submit" class="btn btn-info">Submit</button>
+      	
+      	<div align="center">
+      	<button type="submit" class="btn btn-1"><b>Sign Up</b></button>
+      	</div>
+
     	</form>
   	</div>
   	<div class="col-md-3"></div>
