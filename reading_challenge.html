@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+    <title>Reading Challenges</title>
+    <script>
+        function showForm(id) {
+            document.getElementById(id).style="display:block;"
+        }
+    </script>
+</head>
+<body>
+    <div><h1>Reading Challenges</h1></div>
+    <div>
+        <p>About Reading Challenges</p>
+        <p>Content</p>
+        <p>Which challenge is for me?</p>
+        <p>Content</p>
+        <p>Pick one of our preset challenges or create your own today!</p>
+    </div>
+    <div>
+        <p>30 Day Challenge</p>
+        <p>For the 30 day challenge, you decide to read one book of a genre of your choice within 30 days. This is great if you're just starting to read or want to broaden your reading base.</p>
+        <button type="button" onclick = "showForm('30day'); this.style='display:none;'">Click here to sign up for the 30-Day Challenge</button>
+        <form id="30day" method="POST" action="reading_challenge.php" style="display:none;">
+            <label for="genre">Select your book genre</label>
+            <select id="genre">
+                <?php
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "books";
+                
+                // Create connection
+                $conn = mysqli_connect($servername, $username, $password, $dbname);
+                // Check connection
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                
+                $sql = "SELECT DISTINCT book_genre FROM books";
+                $result = mysqli_query($conn, $sql); 
+                while ($row = mysql_fetch_array($result)){
+                echo "<option>" . $row['book_genre'] . "</option>";
+                }
+                ?>
+            </select>
+            <label for="user">Confirm your username</label>
+            <input type="text" id="user"/>
+            <button type="submit">NEXT</button>
+        </form>
+    </div>
+</body>
