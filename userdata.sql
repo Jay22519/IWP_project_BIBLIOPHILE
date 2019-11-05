@@ -1,5 +1,5 @@
-/*created a database named user_info, and then created two tables in it, one holding
-  user data and the other for cart*/
+/*created a database named user_info, and then created three tables in it, one holding
+  user data, one for cart, and one for reading challenge*/
 
 CREATE TABLE userdata (
 	username VARCHAR(50) PRIMARY KEY,
@@ -15,3 +15,11 @@ CREATE TABLE usercart (
 	book_id VARCHAR(50),
 	PRIMARY KEY(email,book_id)
 	); 
+
+CREATE TABLE userchallenge (
+	username VARCHAR(50),
+	days UNSIGNED INT,
+	books UNSIGNED INT,
+	pages UNSIGNED INT,
+	genre VARCHAR(100)
+	);
