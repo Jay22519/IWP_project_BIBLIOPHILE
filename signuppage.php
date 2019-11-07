@@ -106,8 +106,22 @@
 	</head>
 	
 	<body>
+
+    <?php error_reporting (E_ALL ^ E_NOTICE); ?>
     
-     <?php
+  <?php
+  if(isset($_POST["sign_up_submit"]))
+  {  
+  $username_err = "";
+  $name_err = "";
+  $email_err = "";
+  $country_err = "";
+  $phone_err = "";
+  $pwd_err = "";
+  $pwdr_err = "";
+
+   $message = "";
+  
   $servername = "localhost";
   $usrname = "root";
   $password = "";
@@ -121,13 +135,6 @@
   return $data;
 }
 
-  $username = "";
-  $name = "";
-  $email = "";
-  $country = "";
-  $phone = "";
-  $pwd = "";
-  $pwdr = "";
 
   $username = test_input($_POST["username"]);
   $name = test_input($_POST["name"]);
@@ -137,13 +144,7 @@
   $pwd = test_input($_POST["pwd"]);
   $pwdr = test_input($_POST["pwdr"]);
 
-  $username_err = "";
-  $name_err = "";
-  $email_err = "";
-  $country_err = "";
-  $phone_err = "";
-  $pwd_err = "";
-  $pwdr_err = "";
+  
 
   if(empty($username)) 
   {
@@ -201,15 +202,21 @@
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-    
+
+    $hash_pwd = password_hash($pwd, PASSWORD_DEFAULT);
+   
     $sql = "INSERT INTO userdata (username,name, email, country_code, phone_no, passwd)
-    VALUES ('$username','$name', '$email', '$country', '$phone', '$pwd')";
-    if (mysqli_query($conn, $sql)) {
-        echo "";
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    VALUES ('$username','$name', '$email', '$country', '$phone', '$hash_pwd')";
+    if (mysqli_query($conn, $sql)) 
+    {
+        header("Location: login.php");
+    } 
+    else 
+    {
+        $message = "Couldn't sign up,Please try again!";
     }
     mysqli_close($conn);
+  }
   }
 ?>
 
@@ -217,6 +224,7 @@
   	<div class="col-md-3"></div>         <!--page is divided into three parts in 1:2:1 ratio,middle part contains a bootstrap form-->
   	<div class="col-md-6" id="styles">
 	    <h2 style="text-align: center; padding-bottom: 10px; color: rgb(64, 64, 64);"><b>SIGN UP TO BIBLIOPHILE</b></h2>
+      <div style="color: red;"><?php if($message!="") { echo $message; } ?></div>
 	    <form name="signup" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" style=" padding: 20px">   
 	     <div class="form-group" >
 	        <label for="name">Name(Must contain less than 100 characters):</label>
@@ -338,7 +346,7 @@
          <option value="Hungary">Hungary</option>
          <option value="Iceland">Iceland</option>
          <option value="Indonesia">Indonesia</option>
-         <option value="India">India</option>
+         <option value="India" selected>India</option>
          <option value="Iran">Iran</option>
          <option value="Iraq">Iraq</option>
          <option value="Ireland">Ireland</option>
@@ -497,18 +505,18 @@
           <span style="color: red;"><?php echo "$pwd_err"; ?></span>
      	</div>
      	<div class="form-group">
-         <label for="name">Name(Same as the above password):</label>
+         <label for="name">Re-type password(Same as the above password):</label>
 	        <input type="password" class="form-control" name="pwdr" placeholder="Retype Password">
           <span style="color: red;"><?php echo "$pwdr_err"; ?></span>
      	</div>
       	
       	<div align="center">
-      	<button type="submit" class="btn btn-1"><b>Sign Up</b></button>
+      	<button type="submit" class="btn btn-1" name="sign_up_submit"><b>Sign Up</b></button>
       	</div>
     	</form>
   	</div>
   	<div class="col-md-3"></div>
 	</div>
- 
+
 	</body>
 </html>
